@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>{{ item.name }}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content>
+    <ion-card>
+
+        <ion-item>
+          <ion-avatar item-start>
+            <img [src]="item.user_avtar">
+          </ion-avatar>
+          <h2>{{item.name}}</h2>
+          <p>123</p>
+        </ion-item>
+    
+        <img (tap)="dblClickEvent($event,item.user_name)"  [src]="item.image">
+    
+        <ion-card-content>
+          <p>teste</p>
+        </ion-card-content>
+    
+        <ion-row>
+          <ion-col>
+            <button ion-button color="primary" clear small icon-start>
+              <ion-icon name='thumbs-up'></ion-icon>
+              12Likes
+            </button>
+          </ion-col>
+          <ion-col>
+            <button ion-button color="primary" clear small icon-start>
+              <ion-icon name='text'></ion-icon>
+              4 Comments
+            </button>
+          </ion-col>
+         
+        </ion-row>
+      </ion-card>
+
+</ion-content>
