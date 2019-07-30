@@ -2,6 +2,8 @@ import {Component, ViewChild} from '@angular/core';
 import {IonicPage, NavController, ViewController, ToastController, LoadingController} from 'ionic-angular';
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {Camera} from '@ionic-native/camera';
+import { HttpClient } from '@angular/common/http';
+
 
 import {User} from '../../providers';
 
@@ -16,6 +18,7 @@ export class ProfilePage {
   item: any;
   form: FormGroup;
   profileDetails: any[];
+  thumb = 'https://via.placeholder.com/150'
   private isDisabled: boolean = true;
   private caption_name: string = "EDIT";
   account: {
@@ -32,7 +35,7 @@ export class ProfilePage {
   };
 
   constructor(public navCtrl: NavController, public viewCtrl: ViewController, formBuilder: FormBuilder,
-              public camera: Camera, public users: User,
+              public camera: Camera, public users: User,private _http: HttpClient,
               public toastCtrl: ToastController, public loadingCtrl: LoadingController) {
 
     this.form = formBuilder.group({
@@ -102,7 +105,21 @@ export class ProfilePage {
   }
 
   ionViewDidLoad() {
+    this._http.get('http://localhost:8080/student/1').subscribe(data => {
+      this.account.user_email = data['email']  
+      this.account.user_name = data['username']
+      this.profileDetails = [
+          {
+            full_name: data['name'],
+            about: data['course'],
+            
+            
+          },
+        ];
+      console.log(data)
+    })
   }
+
 
   getPicture() {
     if (Camera['installed']()) {

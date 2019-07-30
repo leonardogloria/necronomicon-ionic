@@ -6,9 +6,7 @@
       </button>
     </ion-buttons>
     <ion-title>{{ 'Profile' | translate }}</ion-title>
-    <ion-buttons right>
-      <button ion-button icon-only (click)="editProfile()" class="editSaveToggleBtn">{{caption_name}}</button>
-    </ion-buttons>
+   
   </ion-navbar>
 </ion-header>
 
@@ -20,9 +18,8 @@
       <div class="upperDiv">
         <input type="file" #fileInput style="visibility: hidden; height: 0px" name="files[]"
                (change)="processWebImage($event)"/>
-        <div class="profile-image-wrapper" (click)="getPicture()">
+        <div class="profile-image-wrapper" >
           <div class="profile-image-placeholder" *ngIf="!this.form.controls.image.value">
-            <ion-icon name="ios-camera-outline" class="ios-camera-outline" md="ios-camera-outline" style="color: white !important"></ion-icon>
             <div>
             </div>
           </div>
@@ -33,27 +30,17 @@
         <h3 class="full_name">{{profileDetails[0].full_name}}</h3>
         <h3 class="userDetails">{{profileDetails[0].about}}</h3>
 
-        <ion-item (click)="openFollowers()" no-lines style="background: #16a085 !important;">
-          <ion-avatar item-start>
-            <img src="../../assets/img/users/followings.png">
-          </ion-avatar>
-          <h3 style="color: white">Following</h3>
-          <ion-badge class="amount" item-end>{{profileDetails[0].following}}</ion-badge>
-        </ion-item>
+       
         <ion-item no-lines (click)="openFollowing()" style="background: #16a085 !important;">
-          <ion-avatar item-start>
-            <img src="../../assets/img/users/followers.png">
-          </ion-avatar>
-          <h3 style="color: white">Follower</h3>
-          <ion-badge class="amount" item-end>{{profileDetails[0].followers}}</ion-badge>
+       
         </ion-item>
       </div>
       <ion-list style="padding: 20px !important; border-bottom: 0.55px solid #fff; !important;">
         <ion-item style="border-top: 0.55px solid #fff; !important;">
-          <ion-label class="label_here">User Name :</ion-label>
+          <ion-label class="label_here">Student Name :</ion-label>
           <ion-input class="inputFields" type="text" formControlName="user_name" (keyup)="changedSmtng()"
                      disabled="{{isDisabled}}"
-                     [(ngModel)]="account.user_name"></ion-input>
+                     [(ngModel)]="profileDetails[0].full_name"></ion-input>
         </ion-item>
 
         <ion-item>
@@ -70,13 +57,6 @@
                      [(ngModel)]="account.user_password"></ion-input>
         </ion-item>
 
-
-        <ion-item style="border-bottom: 0.55px solid #fff; !important;">
-          <ion-label class="label_here">State :</ion-label>
-          <ion-input class="inputFields" type="text" formControlName="user_state" (keyup)="changedSmtng()"
-                     disabled="{{isDisabled}}"
-                     [(ngModel)]="account.user_state"></ion-input>
-        </ion-item>
 
       </ion-list>
     </form>

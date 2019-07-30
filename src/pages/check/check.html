@@ -14,29 +14,20 @@
   
  
   <ion-content>
-      <div *ngIf="false">
-          NFC Tag Not found
-        </div>
+        <ion-card *ngIf="nfcNotFound" >
 
-        <ion-card>
-
-            <ion-item>
-              <ion-avatar item-start>
-                
-              </ion-avatar>
-              <h2>Data Structure</h2>
-              <p>Fri</p>
+            <ion-item>             
+              <h2>{{name}}</h2>
+              <p>{{day}}</p>
             </ion-item>
-        
-           
-        
+              
             <ion-card-content>
-              <p>Mr. Bird Person</p>
+              <p>{{teacher}}</p>
             </ion-card-content>
         
             <ion-row>
               <ion-col>
-                <button ion-button color="primary" clear small icon-start>
+                <button (click)="checkPresence()" ion-button color="primary" clear small icon-start>
                   <ion-icon name='thumbs-up'></ion-icon>
                   Confirm Presence
                 </button>

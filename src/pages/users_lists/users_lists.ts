@@ -9,6 +9,7 @@ import {
   LoadingController
 } from 'ionic-angular';
 import {Vibration} from '@ionic-native/vibration';
+import { HttpClient } from '@angular/common/http';
 
 
 import {Item} from '../../models/item';
@@ -26,17 +27,28 @@ export class UsersPage {
 
   currentItems: any[];
   public press: number = 0;
-
+  disciplines;
+  thumb = 'https://via.placeholder.com/150'
 
   constructor(public vibration: Vibration, public navCtrl: NavController, public navParams: NavParams,
               public items: Items, public modalCtrl: ModalController,
               public toastCtrl: ToastController, private alertCtrl: AlertController,
+              private _http: HttpClient,
               public loadingCtrl: LoadingController) {
 
     this.currentItems = this.items.query();
 
 
   }
+  ionViewDidLoad() {
+    console.log("ulll")
+    this._http.get(`http://localhost:8080/students/disciplines/${1}`).subscribe((data) =>{
+      this.disciplines = data;
+      console.log(this.disciplines)
+      
+    });
+  }
+
 
   /**
    * Perform a service for the proper items.

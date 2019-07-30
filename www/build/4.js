@@ -1,15 +1,15 @@
 webpackJsonp([4],{
 
-/***/ 340:
+/***/ 341:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "NewsfeedCreateModule", function() { return NewsfeedCreateModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "NewsfeedModule", function() { return NewsfeedModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ngx_translate_core__ = __webpack_require__(57);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(42);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__newsfeed_create__ = __webpack_require__(353);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__newsfeed__ = __webpack_require__(485);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -20,39 +20,38 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var NewsfeedCreateModule = /** @class */ (function () {
-    function NewsfeedCreateModule() {
+var NewsfeedModule = /** @class */ (function () {
+    function NewsfeedModule() {
     }
-    NewsfeedCreateModule = __decorate([
+    NewsfeedModule = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["I" /* NgModule */])({
             declarations: [
-                __WEBPACK_IMPORTED_MODULE_3__newsfeed_create__["a" /* NewsfeedCreate */],
+                __WEBPACK_IMPORTED_MODULE_3__newsfeed__["a" /* NewsFeed */],
             ],
             imports: [
-                __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["g" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_3__newsfeed_create__["a" /* NewsfeedCreate */]),
+                __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["g" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_3__newsfeed__["a" /* NewsFeed */]),
                 __WEBPACK_IMPORTED_MODULE_1__ngx_translate_core__["b" /* TranslateModule */].forChild()
             ],
             exports: [
-                __WEBPACK_IMPORTED_MODULE_3__newsfeed_create__["a" /* NewsfeedCreate */]
+                __WEBPACK_IMPORTED_MODULE_3__newsfeed__["a" /* NewsFeed */]
             ]
         })
-    ], NewsfeedCreateModule);
-    return NewsfeedCreateModule;
+    ], NewsfeedModule);
+    return NewsfeedModule;
 }());
 
-//# sourceMappingURL=newsfeed-create.module.js.map
+//# sourceMappingURL=newsfeed.module.js.map
 
 /***/ }),
 
-/***/ 353:
+/***/ 485:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return NewsfeedCreate; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return NewsFeed; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_forms__ = __webpack_require__(16);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_camera__ = __webpack_require__(225);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ionic_angular__ = __webpack_require__(42);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(42);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers__ = __webpack_require__(58);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -65,87 +64,73 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-
-var NewsfeedCreate = /** @class */ (function () {
-    function NewsfeedCreate(navCtrl, viewCtrl, formBuilder, camera) {
-        var _this = this;
+var NewsFeed = /** @class */ (function () {
+    function NewsFeed(navCtrl, modalCtrl, items, toastCtrl) {
         this.navCtrl = navCtrl;
-        this.viewCtrl = viewCtrl;
-        this.camera = camera;
-        this.form = formBuilder.group({
-            image: ['', __WEBPACK_IMPORTED_MODULE_1__angular_forms__["f" /* Validators */].required],
-            user_avtar: ['assets/img/ian-avatar.png'],
-            user_name: ['Dr. Ian Malcolm'],
-            date: ['June 28, 1990'],
-            headline: ['', __WEBPACK_IMPORTED_MODULE_1__angular_forms__["f" /* Validators */].required],
-            content: ['', __WEBPACK_IMPORTED_MODULE_1__angular_forms__["f" /* Validators */].required]
-        });
-        // Watch the form for changes, and
-        this.form.valueChanges.subscribe(function (v) {
-            _this.isReadyToSave = _this.form.valid;
-        });
+        this.modalCtrl = modalCtrl;
+        this.items = items;
+        this.toastCtrl = toastCtrl;
+        this.press = 0;
+        this.likes = 10;
+        this.cardItems = [
+            {
+                user_avtar: 'assets/img/marty-avatar.png',
+                user_name: 'Marty McFly',
+                date: 'November 5, 1955',
+                image: 'assets/img/advance-card-bttf.png',
+                content: 'Wait a minute. Wait a minute, Doc. Uhhh... Are you telling me that you built a time machine... out of a DeLorean?! Whoa. This is heavy.',
+            },
+            {
+                user_avtar: 'assets/img/sarah-avatar.png.jpeg',
+                user_name: 'Sarah Connor',
+                date: 'May 12, 1984',
+                image: 'assets/img/advance-card-tmntr.jpg',
+                content: 'I face the unknown future, with a sense of hope. Because if a machine, a Terminator, can learn the value of human life, maybe we can too.'
+            },
+            {
+                user_avtar: 'assets/img/ian-avatar.png',
+                user_name: 'Dr. Ian Malcolm',
+                date: 'June 28, 1990',
+                image: 'assets/img/advance-card-jp.jpg',
+                content: 'Your scientists were so preoccupied with whether or not they could, that they didn\'t stop to think if they should.'
+            }
+        ];
     }
-    NewsfeedCreate.prototype.ionViewDidLoad = function () {
-    };
-    NewsfeedCreate.prototype.getPicture = function () {
+    NewsFeed.prototype.addNewsFeed = function () {
         var _this = this;
-        if (__WEBPACK_IMPORTED_MODULE_2__ionic_native_camera__["a" /* Camera */]['installed']()) {
-            this.camera.getPicture({
-                destinationType: this.camera.DestinationType.DATA_URL,
-                targetWidth: 96,
-                targetHeight: 96
-            }).then(function (data) {
-                _this.form.patchValue({ 'image': 'data:image/jpg;base64,' + data });
-            }, function (err) {
-                alert('Unable to take photo');
+        var addModal = this.modalCtrl.create('NewsfeedCreate');
+        addModal.onDidDismiss(function (item) {
+            if (item) {
+                console.log(item);
+                _this.cardItems.push(item);
+            }
+        });
+        addModal.present();
+    };
+    NewsFeed.prototype.dblClickEvent = function (ev, user_name) {
+        this.press++;
+        if (this.press == 2) {
+            var toast = this.toastCtrl.create({
+                message: "You have liked this.",
+                duration: 2000,
+                position: 'top'
             });
+            toast.present();
+            this.press = 0;
+            this.likes++;
         }
-        else {
-            this.fileInput.nativeElement.click();
-        }
     };
-    NewsfeedCreate.prototype.processWebImage = function (event) {
-        var _this = this;
-        var reader = new FileReader();
-        reader.onload = function (readerEvent) {
-            var imageData = readerEvent.target.result;
-            _this.form.patchValue({ 'image': imageData });
-        };
-        reader.readAsDataURL(event.target.files[0]);
-    };
-    NewsfeedCreate.prototype.getProfileImageStyle = function () {
-        return 'url(' + this.form.controls['image'].value + ')';
-    };
-    /**
-     * The user cancelled, so we dismiss without sending data back.
-     */
-    NewsfeedCreate.prototype.cancel = function () {
-        this.viewCtrl.dismiss();
-    };
-    /**
-     * The user is done and wants to create the item, so return it
-     * back to the presenter.
-     */
-    NewsfeedCreate.prototype.done = function () {
-        if (!this.form.valid) {
-            return;
-        }
-        this.viewCtrl.dismiss(this.form.value);
-    };
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_8" /* ViewChild */])('fileInput'),
-        __metadata("design:type", Object)
-    ], NewsfeedCreate.prototype, "fileInput", void 0);
-    NewsfeedCreate = __decorate([
+    NewsFeed = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'newsfeed-create',template:/*ion-inline-start:"D:\Projetos\Projetos2019\ionic\Ionic3-Multi-Purpose-Theme\src\pages\newsfeed-create\newsfeed-create.html"*/'<ion-header>\n\n  <ion-navbar color="primary">\n    <ion-title>{{ \'New News\' | translate }}</ion-title>\n    <ion-buttons start>\n      <button ion-button (click)="cancel()">\n        <span color="primary" showWhen="ios">\n          {{ \'CANCEL_BUTTON\' | translate }}\n        </span>\n        <ion-icon name="md-close" showWhen="android,windows"></ion-icon>\n      </button>\n    </ion-buttons>\n    <ion-buttons end>\n      <button ion-button (click)="done()" [disabled]="!isReadyToSave" strong>\n        <span color="primary" showWhen="ios">\n          {{ \'DONE_BUTTON\' | translate }}\n        </span>\n        <ion-icon name="md-checkmark" showWhen="core,android,windows"></ion-icon>\n      </button>\n    </ion-buttons>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content>\n  <form *ngIf="form" [formGroup]="form" (ngSubmit)="createItem()">\n    <input type="file" #fileInput style="visibility: hidden; height: 0px" name="files[]" (change)="processWebImage($event)" />\n    <div class="profile-image-wrapper" (click)="getPicture()">\n      <div class="profile-image-placeholder" *ngIf="!this.form.controls.image.value">\n        <ion-icon name="ios-camera-outline" md="ios-camera-outline"></ion-icon>\n        <div>\n          {{ \'Add Image\' | translate }}\n        </div>\n      </div>\n      <div class="profile-image" [style.backgroundImage]="getProfileImageStyle()" *ngIf="this.form.controls.image.value"></div>\n    </div>\n    <ion-list>\n      <ion-item>\n        <ion-input type="text" placeholder="{{ \'Headline\' | translate }}" formControlName="headline"></ion-input>\n      </ion-item>\n      <ion-item>\n        <ion-textarea type="text" placeholder="{{ \'Content\' | translate }}" formControlName="content"></ion-textarea>\n      </ion-item>\n    </ion-list>\n  </form>\n</ion-content>\n'/*ion-inline-end:"D:\Projetos\Projetos2019\ionic\Ionic3-Multi-Purpose-Theme\src\pages\newsfeed-create\newsfeed-create.html"*/
+            selector: 'news-feed',template:/*ion-inline-start:"D:\Projetos\Projetos2019\ionic\Ionic3-Multi-Purpose-Theme\src\pages\newsfeed\newsfeed.html"*/'\n<ion-header>\n  <ion-navbar color="primary">\n    <ion-buttons left>\n      <button ion-button icon-only menuToggle>\n        <ion-icon name="menu"></ion-icon>\n      </button>\n    </ion-buttons>\n    <ion-title>{{ \'News Feed\' | translate }}</ion-title>\n    <ion-buttons right>\n      <button ion-button icon-only (click)="addNewsFeed()" ><ion-icon name="add"></ion-icon></button>\n    </ion-buttons>\n  </ion-navbar>\n</ion-header>\n\n\n<ion-content>\n\n  <ion-card *ngFor="let item of cardItems">\n\n    <ion-item>\n      <ion-avatar item-start>\n        <img [src]="item.user_avtar">\n      </ion-avatar>\n      <h2>{{item.user_name}}</h2>\n      <p>{{item.date}}</p>\n    </ion-item>\n\n    <img (tap)="dblClickEvent($event,item.user_name)"  [src]="item.image">\n\n    <ion-card-content>\n      <p>{{item.content}}</p>\n    </ion-card-content>\n\n    <ion-row>\n      <ion-col>\n        <button ion-button color="primary" clear small icon-start>\n          <ion-icon name=\'thumbs-up\'></ion-icon>\n          {{likes}} Likes\n        </button>\n      </ion-col>\n      <ion-col>\n        <button ion-button color="primary" clear small icon-start>\n          <ion-icon name=\'text\'></ion-icon>\n          4 Comments\n        </button>\n      </ion-col>\n      <ion-col center text-center>\n        <ion-note>\n          11h ago\n        </ion-note>\n      </ion-col>\n    </ion-row>\n  </ion-card>\n</ion-content>\n'/*ion-inline-end:"D:\Projetos\Projetos2019\ionic\Ionic3-Multi-Purpose-Theme\src\pages\newsfeed\newsfeed.html"*/
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_3_ionic_angular__["k" /* NavController */], __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["o" /* ViewController */], __WEBPACK_IMPORTED_MODULE_1__angular_forms__["a" /* FormBuilder */], __WEBPACK_IMPORTED_MODULE_2__ionic_native_camera__["a" /* Camera */]])
-    ], NewsfeedCreate);
-    return NewsfeedCreate;
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* ModalController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* ModalController */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__providers__["b" /* Items */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers__["b" /* Items */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["n" /* ToastController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["n" /* ToastController */]) === "function" && _d || Object])
+    ], NewsFeed);
+    return NewsFeed;
+    var _a, _b, _c, _d;
 }());
 
-//# sourceMappingURL=newsfeed-create.js.map
+//# sourceMappingURL=newsfeed.js.map
 
 /***/ })
 

@@ -1,15 +1,15 @@
 webpackJsonp([2],{
 
-/***/ 342:
+/***/ 343:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ProfilePageModule", function() { return ProfilePageModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SignupPageModule", function() { return SignupPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ngx_translate_core__ = __webpack_require__(57);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(42);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__profile__ = __webpack_require__(355);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__signup__ = __webpack_require__(487);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -20,40 +20,40 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var ProfilePageModule = /** @class */ (function () {
-    function ProfilePageModule() {
+var SignupPageModule = /** @class */ (function () {
+    function SignupPageModule() {
     }
-    ProfilePageModule = __decorate([
+    SignupPageModule = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["I" /* NgModule */])({
             declarations: [
-                __WEBPACK_IMPORTED_MODULE_3__profile__["a" /* ProfilePage */],
+                __WEBPACK_IMPORTED_MODULE_3__signup__["a" /* SignupPage */],
             ],
             imports: [
-                __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["g" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_3__profile__["a" /* ProfilePage */]),
+                __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["g" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_3__signup__["a" /* SignupPage */]),
                 __WEBPACK_IMPORTED_MODULE_1__ngx_translate_core__["b" /* TranslateModule */].forChild()
             ],
             exports: [
-                __WEBPACK_IMPORTED_MODULE_3__profile__["a" /* ProfilePage */]
+                __WEBPACK_IMPORTED_MODULE_3__signup__["a" /* SignupPage */]
             ]
         })
-    ], ProfilePageModule);
-    return ProfilePageModule;
+    ], SignupPageModule);
+    return SignupPageModule;
 }());
 
-//# sourceMappingURL=profile.module.js.map
+//# sourceMappingURL=signup.module.js.map
 
 /***/ }),
 
-/***/ 355:
+/***/ 487:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ProfilePage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SignupPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(42);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__(16);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_camera__ = __webpack_require__(225);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers__ = __webpack_require__(58);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ngx_translate_core__ = __webpack_require__(57);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(42);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers__ = __webpack_require__(58);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4____ = __webpack_require__(226);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -68,132 +68,55 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var ProfilePage = /** @class */ (function () {
-    function ProfilePage(navCtrl, viewCtrl, formBuilder, camera, users, toastCtrl, loadingCtrl) {
+var SignupPage = /** @class */ (function () {
+    function SignupPage(navCtrl, user, toastCtrl, translateService) {
+        var _this = this;
         this.navCtrl = navCtrl;
-        this.viewCtrl = viewCtrl;
-        this.camera = camera;
-        this.users = users;
+        this.user = user;
         this.toastCtrl = toastCtrl;
-        this.loadingCtrl = loadingCtrl;
-        this.isDisabled = true;
-        this.caption_name = "EDIT";
+        this.translateService = translateService;
         this.account = {
-            user_name: 'arnoldschwarzenegger',
-            user_email: 'arnold.sc@terminator.net',
-            user_password: 'password',
-            user_state: 'California',
-            profile_image: 'asset/img/src/img.jpg',
-            full_name: 'Arnold Schwarzenegger',
-            about: 'Former Governor of California'
+            name: '',
+            email: '',
+            password: '',
+            number: '',
+            myDate: 'MM/DD/YYYY',
+            gender: 'm'
         };
-        this.form = formBuilder.group({
-            image: [''], user_name: [''], user_password: [''], user_email: [''], user_state: [''],
+        this.translateService.get('SIGNUP_ERROR').subscribe(function (value) {
+            _this.signupErrorString = value;
         });
-        this.profileDetails = [
-            {
-                full_name: "Arnold Schwarzenegger",
-                about: "Former Governor of California",
-                followers: 230,
-                following: 170
-            },
-        ];
     }
-    ProfilePage.prototype.openFollowers = function () {
-        this.navCtrl.push('Followers');
-    };
-    ProfilePage.prototype.openFollowing = function () {
-        this.navCtrl.push('Following');
-    };
-    ProfilePage.prototype.changedSmtng = function () {
-        this.caption_name = "SAVE";
-    };
-    ProfilePage.prototype.editProfile = function () {
+    SignupPage.prototype.doSignup = function () {
         var _this = this;
-        if (this.caption_name == "EDIT") {
-            this.isDisabled = false;
-            this.caption_name = "CANCEL";
-        }
-        else if (this.caption_name == "SAVE") {
-            console.log(this.isReadyToSave);
-            if (!(this.account.user_name && this.account.user_email && this.account.user_password && this.account.user_state)) {
-                var toast = this.toastCtrl.create({
-                    message: "Validation errors !",
-                    duration: 2000,
-                    position: 'top'
-                });
-                toast.present();
-            }
-            else {
-                var loading_1 = this.loadingCtrl.create({
-                    content: 'Please wait...'
-                });
-                loading_1.present();
-                setTimeout(function () {
-                    loading_1.dismiss();
-                    var toast = _this.toastCtrl.create({
-                        message: "You have successfully updated your details .",
-                        duration: 2000,
-                        position: 'top'
-                    });
-                    _this.caption_name = "EDIT";
-                    _this.isDisabled = true;
-                    toast.present();
-                }, 2000);
-            }
-        }
-        else if (this.caption_name == "CANCEL") {
-            this.isDisabled = true;
-            this.caption_name = "EDIT";
-        }
-    };
-    ProfilePage.prototype.ionViewDidLoad = function () {
-    };
-    ProfilePage.prototype.getPicture = function () {
-        var _this = this;
-        if (__WEBPACK_IMPORTED_MODULE_3__ionic_native_camera__["a" /* Camera */]['installed']()) {
-            this.camera.getPicture({
-                destinationType: this.camera.DestinationType.DATA_URL,
-                targetWidth: 96,
-                targetHeight: 96
-            }).then(function (data) {
-                _this.form.patchValue({ 'image': 'data:image/jpg;base64,' + data });
-            }, function (err) {
-                alert('Unable to take photo');
+        // Attempt to login in through our User service
+        this.user.signup(this.account).subscribe(function (resp) {
+            _this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_4____["a" /* FirstRunPage */]);
+        }, function (err) {
+            _this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_4____["a" /* FirstRunPage */]);
+            // Unable to sign up
+            var toast = _this.toastCtrl.create({
+                message: "You have successfully signed up . Please sign in .",
+                duration: 3000,
+                position: 'top'
             });
-        }
-        else {
-            this.fileInput.nativeElement.click();
-        }
+            toast.present();
+        });
     };
-    ProfilePage.prototype.processWebImage = function (event) {
-        var _this = this;
-        var reader = new FileReader();
-        reader.onload = function (readerEvent) {
-            var imageData = readerEvent.target.result;
-            _this.form.patchValue({ 'image': imageData });
-        };
-        reader.readAsDataURL(event.target.files[0]);
+    SignupPage.prototype.welcomePage = function () {
+        this.navCtrl.push('WelcomePage');
     };
-    ProfilePage.prototype.getProfileImageStyle = function () {
-        return 'url(' + this.form.controls['image'].value + ')';
-    };
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_8" /* ViewChild */])('fileInput'),
-        __metadata("design:type", Object)
-    ], ProfilePage.prototype, "fileInput", void 0);
-    ProfilePage = __decorate([
+    SignupPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'profile-page',template:/*ion-inline-start:"D:\Projetos\Projetos2019\ionic\Ionic3-Multi-Purpose-Theme\src\pages\profile\profile.html"*/'<ion-header>\n  <ion-navbar color="primary">\n    <ion-buttons left>\n      <button ion-button icon-only menuToggle>\n        <ion-icon name="menu"></ion-icon>\n      </button>\n    </ion-buttons>\n    <ion-title>{{ \'Profile\' | translate }}</ion-title>\n    <ion-buttons right>\n      <button ion-button icon-only (click)="editProfile()" class="editSaveToggleBtn">{{caption_name}}</button>\n    </ion-buttons>\n  </ion-navbar>\n</ion-header>\n\n\n<ion-content>\n  <div class="fixed-content">\n\n    <form *ngIf="form" [formGroup]="form" (ngSubmit)="saveProfile()">\n      <div class="upperDiv">\n        <input type="file" #fileInput style="visibility: hidden; height: 0px" name="files[]"\n               (change)="processWebImage($event)"/>\n        <div class="profile-image-wrapper" (click)="getPicture()">\n          <div class="profile-image-placeholder" *ngIf="!this.form.controls.image.value">\n            <ion-icon name="ios-camera-outline" class="ios-camera-outline" md="ios-camera-outline" style="color: white !important"></ion-icon>\n            <div>\n            </div>\n          </div>\n          <div class="profile-image" [style.backgroundImage]="getProfileImageStyle()"\n               *ngIf="this.form.controls.image.value"></div>\n        </div>\n\n        <h3 class="full_name">{{profileDetails[0].full_name}}</h3>\n        <h3 class="userDetails">{{profileDetails[0].about}}</h3>\n\n        <ion-item (click)="openFollowers()" no-lines style="background: #16a085 !important;">\n          <ion-avatar item-start>\n            <img src="../../assets/img/users/followings.png">\n          </ion-avatar>\n          <h3 style="color: white">Following</h3>\n          <ion-badge class="amount" item-end>{{profileDetails[0].following}}</ion-badge>\n        </ion-item>\n        <ion-item no-lines (click)="openFollowing()" style="background: #16a085 !important;">\n          <ion-avatar item-start>\n            <img src="../../assets/img/users/followers.png">\n          </ion-avatar>\n          <h3 style="color: white">Follower</h3>\n          <ion-badge class="amount" item-end>{{profileDetails[0].followers}}</ion-badge>\n        </ion-item>\n      </div>\n      <ion-list style="padding: 20px !important; border-bottom: 0.55px solid #fff; !important;">\n        <ion-item style="border-top: 0.55px solid #fff; !important;">\n          <ion-label class="label_here">User Name :</ion-label>\n          <ion-input class="inputFields" type="text" formControlName="user_name" (keyup)="changedSmtng()"\n                     disabled="{{isDisabled}}"\n                     [(ngModel)]="account.user_name"></ion-input>\n        </ion-item>\n\n        <ion-item>\n          <ion-label class="label_here">Email :</ion-label>\n          <ion-input class="inputFields" type="email" formControlName="user_email" (keyup)="changedSmtng()"\n                     disabled="{{isDisabled}}"\n                     [(ngModel)]="account.user_email"></ion-input>\n        </ion-item>\n\n        <ion-item>\n          <ion-label class="label_here">Password :</ion-label>\n          <ion-input class="inputFields" type="password" formControlName="user_password" (keyup)="changedSmtng()"\n                     disabled="{{isDisabled}}"\n                     [(ngModel)]="account.user_password"></ion-input>\n        </ion-item>\n\n\n        <ion-item style="border-bottom: 0.55px solid #fff; !important;">\n          <ion-label class="label_here">State :</ion-label>\n          <ion-input class="inputFields" type="text" formControlName="user_state" (keyup)="changedSmtng()"\n                     disabled="{{isDisabled}}"\n                     [(ngModel)]="account.user_state"></ion-input>\n        </ion-item>\n\n      </ion-list>\n    </form>\n  </div>\n</ion-content>\n\n'/*ion-inline-end:"D:\Projetos\Projetos2019\ionic\Ionic3-Multi-Purpose-Theme\src\pages\profile\profile.html"*/
+            selector: 'page-signup',template:/*ion-inline-start:"D:\Projetos\Projetos2019\ionic\Ionic3-Multi-Purpose-Theme\src\pages\signup\signup.html"*/'<ion-header>\n  <ion-navbar color="primary">\n    <ion-buttons left>\n      <button ion-button icon-only (click)="welcomePage()">\n        <ion-icon ios="ios-arrow-round-back" md="md-arrow-round-back"></ion-icon>\n      </button>\n    </ion-buttons>\n    <ion-title>{{ \'Sign up\' | translate }}</ion-title>\n  </ion-navbar>\n</ion-header>\n\n\n<ion-content>\n  <form (submit)="doSignup()">\n    <ion-list>\n\n      <ion-item>\n        <ion-label fixed>{{ \'NAME\' | translate }}</ion-label>\n        <ion-input type="text" [(ngModel)]="account.name" name="name"></ion-input>\n      </ion-item>\n\n      <ion-item>\n        <ion-label fixed>{{ \'Phone\' | translate }}</ion-label>\n        <ion-input type="number" [(ngModel)]="account.number" name="email"></ion-input>\n      </ion-item>\n\n      <ion-item>\n        <ion-label fixed>{{ \'EMAIL\' | translate }}</ion-label>\n        <ion-input type="email" [(ngModel)]="account.email" name="email"></ion-input>\n      </ion-item>\n\n\n      <ion-item>\n        <ion-label fixed>{{ \'PASSWORD\' | translate }}</ion-label>\n        <ion-input type="password" [(ngModel)]="account.password" name="password"></ion-input>\n      </ion-item>\n\n      <ion-item>\n        <ion-label fixed>{{ \'Date Of Birth\' | translate }}</ion-label>\n        <ion-datetime displayFormat="MM/DD/YYYY"></ion-datetime>\n      </ion-item>\n\n\n      <ion-item>\n        <ion-label>Gender</ion-label>\n        <ion-select>\n          <ion-option value="f">Female</ion-option>\n          <ion-option value="m">Male</ion-option>\n        </ion-select>\n      </ion-item>\n\n      <ion-item>\n        <ion-label>Interest</ion-label>\n        <ion-select multiple="true" okText="Okay" cancelText="Dismiss">\n          <ion-option>Coading</ion-option>\n          <ion-option>Watching</ion-option>\n          <ion-option>Partying</ion-option>\n          <ion-option>Playing</ion-option>\n          <ion-option>Gyming</ion-option>\n          <ion-option>Singing</ion-option>\n        </ion-select>\n      </ion-item>\n\n\n      <div padding>\n        <button ion-button class="signUpBtn" block>{{ \'SIGNUP_BUTTON\' | translate }}</button>\n      </div>\n\n    </ion-list>\n  </form>\n</ion-content>\n'/*ion-inline-end:"D:\Projetos\Projetos2019\ionic\Ionic3-Multi-Purpose-Theme\src\pages\signup\signup.html"*/
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["o" /* ViewController */], __WEBPACK_IMPORTED_MODULE_2__angular_forms__["a" /* FormBuilder */],
-            __WEBPACK_IMPORTED_MODULE_3__ionic_native_camera__["a" /* Camera */], __WEBPACK_IMPORTED_MODULE_4__providers__["d" /* User */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["n" /* ToastController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */]])
-    ], ProfilePage);
-    return ProfilePage;
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["k" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["k" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__providers__["d" /* User */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__providers__["d" /* User */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["n" /* ToastController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["n" /* ToastController */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1__ngx_translate_core__["c" /* TranslateService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__ngx_translate_core__["c" /* TranslateService */]) === "function" && _d || Object])
+    ], SignupPage);
+    return SignupPage;
+    var _a, _b, _c, _d;
 }());
 
-//# sourceMappingURL=profile.js.map
+//# sourceMappingURL=signup.js.map
 
 /***/ })
 

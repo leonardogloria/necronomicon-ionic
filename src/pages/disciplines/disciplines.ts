@@ -14,6 +14,7 @@ import {Vibration} from '@ionic-native/vibration';
 import {Item} from '../../models/item';
 import {Items} from '../../providers';
 import {ItemSliding} from "ionic-angular/umd";
+import { HttpClient } from '@angular/common/http';
 
 
 
@@ -26,18 +27,21 @@ export class DisciplinesPage {
 
   currentItems: any[];
   public press: number = 0;
+  disciplines;
 
 
   constructor(public vibration: Vibration, public navCtrl: NavController, public navParams: NavParams,
               public items: Items, public modalCtrl: ModalController,
               public toastCtrl: ToastController, private alertCtrl: AlertController,
-              public loadingCtrl: LoadingController) {
+              public loadingCtrl: LoadingController
+              ,private _http: HttpClient,
+              ) {
 
     this.currentItems = this.items.query();
-
+    
 
   }
-
+  
   /**
    * Perform a service for the proper items.
    */

@@ -24,11 +24,11 @@ import {Settings} from '../providers';
         <ion-list class="headerMAin">
           <ion-item style="background: black !important;border-bottom: 0.55px solid #000000!important;">
             <ion-list class="logoImage" menuClose (click)="openPage(pages[4])">
-              <div class="circle-pic" text-center #profilePic [style.background-image]="'url(../../assets/img/advance-card-tmntr.jpg)'"></div>
-              <!--<img class="circle-pic" src="../../assets/img/advance-card-tmntr.jpg"/>-->
+              <div class="circle-pic" text-center #profilePic [style.background-image]="'url(https://via.placeholder.com/150)'"></div>
+              <!--<img class="circle-pic" src="https://via.placeholder.com/150"/>-->
             </ion-list>
-            <h3 class="userName">Arnold Schwarzenegger</h3>
-            <h3 class="userDetails">Former Governor of California</h3>
+            <h3 class="userName">Vicente Silva</h3>
+            <h3 class="userDetails">Computer Science</h3>
           </ion-item>
         </ion-list>
         
@@ -37,13 +37,9 @@ import {Settings} from '../providers';
           <button menuClose ion-item no-lines style="border-top: 0.55px solid #383838; !important;"
                   [class.activeHIghlight]="checkActive(pages[5])" (click)="openPage(pages[5])" class="buttonSIdeBAr">
             <ion-icon ios="ios-list-box-outline" class="sidebarCss" md="ios-list-box-outline"></ion-icon>
-            Disciplines
+            Classes
           </button>
-          <button menuClose ion-item no-lines [class.activeHIghlight]="checkActive(pages[3])"
-                  (click)="openPage(pages[3])" class="buttonSIdeBAr">
-            <ion-icon ios="ios-notifications-outline" class="sidebarCss" md="ios-notifications-outline"></ion-icon>
-            News Feed
-          </button>
+         
           
           <button menuClose ion-item no-lines [class.activeHIghlight]="checkActive(pages[4])"
                   (click)="openPage(pages[4])" class="buttonSIdeBAr">

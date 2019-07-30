@@ -1,6 +1,6 @@
 webpackJsonp([13],{
 
-/***/ 131:
+/***/ 132:
 /***/ (function(module, exports) {
 
 function webpackEmptyAsyncContext(req) {
@@ -13,7 +13,7 @@ function webpackEmptyAsyncContext(req) {
 webpackEmptyAsyncContext.keys = function() { return []; };
 webpackEmptyAsyncContext.resolve = webpackEmptyAsyncContext;
 module.exports = webpackEmptyAsyncContext;
-webpackEmptyAsyncContext.id = 131;
+webpackEmptyAsyncContext.id = 132;
 
 /***/ }),
 
@@ -47,34 +47,34 @@ var map = {
 	],
 	"../pages/item-detail/item-detail.module": [
 		338,
-		6
+		0
 	],
 	"../pages/list-master/list-master.module": [
 		339,
-		5
+		6
 	],
 	"../pages/newsfeed-create/newsfeed-create.module": [
 		340,
-		4
+		5
 	],
 	"../pages/newsfeed/newsfeed.module": [
 		341,
-		3
+		4
 	],
 	"../pages/profile/profile.module": [
 		342,
-		2
+		3
 	],
 	"../pages/signup/signup.module": [
 		343,
-		1
+		2
 	],
 	"../pages/users_lists/users_lists.module": [
 		185
 	],
 	"../pages/welcome/welcome.module": [
 		344,
-		0
+		1
 	]
 };
 function webpackAsyncContext(req) {
@@ -98,7 +98,7 @@ module.exports = webpackAsyncContext;
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Api; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_common_http__ = __webpack_require__(132);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_common_http__ = __webpack_require__(59);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -344,8 +344,9 @@ var Tab3Root = 'SettingsPage';
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return UsersPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(42);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_vibration__ = __webpack_require__(119);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers__ = __webpack_require__(58);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_vibration__ = __webpack_require__(120);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_common_http__ = __webpack_require__(59);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers__ = __webpack_require__(58);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -359,8 +360,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var UsersPage = /** @class */ (function () {
-    function UsersPage(vibration, navCtrl, navParams, items, modalCtrl, toastCtrl, alertCtrl, loadingCtrl) {
+    function UsersPage(vibration, navCtrl, navParams, items, modalCtrl, toastCtrl, alertCtrl, _http, loadingCtrl) {
         this.vibration = vibration;
         this.navCtrl = navCtrl;
         this.navParams = navParams;
@@ -368,10 +370,20 @@ var UsersPage = /** @class */ (function () {
         this.modalCtrl = modalCtrl;
         this.toastCtrl = toastCtrl;
         this.alertCtrl = alertCtrl;
+        this._http = _http;
         this.loadingCtrl = loadingCtrl;
         this.press = 0;
+        this.thumb = 'https://via.placeholder.com/150';
         this.currentItems = this.items.query();
     }
+    UsersPage.prototype.ionViewDidLoad = function () {
+        var _this = this;
+        console.log("ulll");
+        this._http.get("http://localhost:8080/students/disciplines/" + 1).subscribe(function (data) {
+            _this.disciplines = data;
+            console.log(_this.disciplines);
+        });
+    };
     /**
      * Perform a service for the proper items.
      */
@@ -452,11 +464,12 @@ var UsersPage = /** @class */ (function () {
     };
     UsersPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'users_lists',template:/*ion-inline-start:"D:\Projetos\Projetos2019\ionic\Ionic3-Multi-Purpose-Theme\src\pages\users_lists\users_lists.html"*/'<ion-header>\n  <ion-navbar color="primary">\n    <ion-buttons left>\n      <button ion-button icon-only menuToggle>\n        <ion-icon name="menu"></ion-icon>\n      </button>\n    </ion-buttons>\n    <ion-title>Disciplines</ion-title>\n    <ion-buttons right>\n     \n    </ion-buttons>\n  </ion-navbar>\n</ion-header>\n\n\n<ion-content>\n  <ion-searchbar (ionInput)="getItems($event)" placeholder="{{ \'Search Disciplines\' | translate }}"></ion-searchbar>\n  <ion-list>\n    <ion-item-sliding class="cssForRoundSLidingItems" *ngFor="let item of currentItems" #slidingItem>\n      <ion-item (click)="openItem(item)" (press)="pressEvent($event)">\n        <ion-avatar item-start>\n          <img [src]="item.profilePic">\n        </ion-avatar>\n        <h2>{{item.name}}</h2>\n        <p>{{item.schedule}}</p>\n        <ion-icon item-end ios="ios-checkmark" md="md-checkmark" class="nextDiff"></ion-icon>\n      </ion-item>\n      <ion-item-options side="right">\n        <button ion-button color="dark" icon-start>\n          <ion-icon name="ios-more"></ion-icon>\n\n        </button>\n        <button ion-button color="dark" icon-start>\n          <ion-icon name="text"></ion-icon>\n\n        </button>\n        <button ion-button color="dark" icon-start>\n          <ion-icon name="call"></ion-icon>\n        </button>\n      </ion-item-options>\n\n      <ion-item-options side="left">\n        <button ion-button color="dark" (click)="deleteItem(item,slidingItem)" icon-start>\n          <ion-icon name="trash"></ion-icon>\n        </button>\n      </ion-item-options>\n    </ion-item-sliding>\n  </ion-list>\n</ion-content>\n\n\n'/*ion-inline-end:"D:\Projetos\Projetos2019\ionic\Ionic3-Multi-Purpose-Theme\src\pages\users_lists\users_lists.html"*/
+            selector: 'users_lists',template:/*ion-inline-start:"D:\Projetos\Projetos2019\ionic\Ionic3-Multi-Purpose-Theme\src\pages\users_lists\users_lists.html"*/'<ion-header>\n  <ion-navbar color="primary">\n    <ion-buttons left>\n      <button ion-button icon-only menuToggle>\n        <ion-icon name="menu"></ion-icon>\n      </button>\n    </ion-buttons>\n    <ion-title>Classes</ion-title>\n    <ion-buttons right>\n     \n    </ion-buttons>\n  </ion-navbar>\n</ion-header>\n\n\n<ion-content>\n  <ion-list>\n    <ion-item-sliding class="cssForRoundSLidingItems" *ngFor="let item of disciplines" #slidingItem>\n      <ion-item (click)="openItem(item)" (press)="pressEvent($event)">\n        <ion-avatar item-start>\n          <img [src]="thumb">\n        </ion-avatar>\n        <h2>{{item.discipline}}</h2>\n        <p>{{item.days}}</p>\n        <ion-icon item-end ios="ios-checkmark" md="md-checkmark" class="nextDiff"></ion-icon>\n      </ion-item>\n      <ion-item-options side="right">\n        <button ion-button color="dark" icon-start>\n          <ion-icon name="ios-more"></ion-icon>\n\n        </button>\n        <button ion-button color="dark" icon-start>\n          <ion-icon name="text"></ion-icon>\n\n        </button>\n        <button ion-button color="dark" icon-start>\n          <ion-icon name="call"></ion-icon>\n        </button>\n      </ion-item-options>\n\n      <ion-item-options side="left">\n        <button ion-button color="dark" (click)="deleteItem(item,slidingItem)" icon-start>\n          <ion-icon name="trash"></ion-icon>\n        </button>\n      </ion-item-options>\n    </ion-item-sliding>\n  </ion-list>\n</ion-content>\n\n\n'/*ion-inline-end:"D:\Projetos\Projetos2019\ionic\Ionic3-Multi-Purpose-Theme\src\pages\users_lists\users_lists.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__ionic_native_vibration__["a" /* Vibration */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavParams */],
-            __WEBPACK_IMPORTED_MODULE_3__providers__["b" /* Items */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* ModalController */],
+            __WEBPACK_IMPORTED_MODULE_4__providers__["b" /* Items */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* ModalController */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["n" /* ToastController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */],
+            __WEBPACK_IMPORTED_MODULE_3__angular_common_http__["a" /* HttpClient */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */]])
     ], UsersPage);
     return UsersPage;
@@ -487,7 +500,7 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* unused harmony export createTranslateLoader */
 /* unused harmony export provideSettings */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppModule; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_common_http__ = __webpack_require__(132);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_common_http__ = __webpack_require__(59);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_platform_browser__ = __webpack_require__(30);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_camera__ = __webpack_require__(225);
@@ -500,7 +513,7 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__mocks_providers_items__ = __webpack_require__(184);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__providers__ = __webpack_require__(58);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__app_component__ = __webpack_require__(331);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__ionic_native_vibration__ = __webpack_require__(119);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__ionic_native_vibration__ = __webpack_require__(120);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__pages_users_lists_users_lists_module__ = __webpack_require__(185);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -776,6 +789,7 @@ var User = /** @class */ (function () {
         var _this = this;
         var seq = this.api.post('login', accountInfo).share();
         seq.subscribe(function (res) {
+            console.log(res.status);
             // If the API returned a successful response, mark the user as logged in
             if (res.status == 'success') {
                 _this._loggedIn(res);
@@ -964,7 +978,7 @@ var MyApp = /** @class */ (function () {
     MyApp = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
             selector: 'side-main-menu',
-            template: "<ion-menu [content]=\"content\">\n      <ion-header class=\"headerMAin\">\n        <ion-toolbar color=\"primary\">\n          <ion-buttons left>\n            <button class=\"createUser\" ion-button icon-only menuClose (click)=\"openPage(pages[4])\">\n              <ion-icon name=\"ios-create-outline\" md=\"ios-create-outline\" style=\"color:  #1ABC9C !important;\"></ion-icon>\n            </button>\n          </ion-buttons>\n        </ion-toolbar>\n      </ion-header>\n\n      <ion-content class=\"sideMenuIoncContent\">\n        \n        <ion-list class=\"headerMAin\">\n          <ion-item style=\"background: black !important;border-bottom: 0.55px solid #000000!important;\">\n            <ion-list class=\"logoImage\" menuClose (click)=\"openPage(pages[4])\">\n              <div class=\"circle-pic\" text-center #profilePic [style.background-image]=\"'url(../../assets/img/advance-card-tmntr.jpg)'\"></div>\n              <!--<img class=\"circle-pic\" src=\"../../assets/img/advance-card-tmntr.jpg\"/>-->\n            </ion-list>\n            <h3 class=\"userName\">Arnold Schwarzenegger</h3>\n            <h3 class=\"userDetails\">Former Governor of California</h3>\n          </ion-item>\n        </ion-list>\n        \n        <ion-list>\n          \n          <button menuClose ion-item no-lines style=\"border-top: 0.55px solid #383838; !important;\"\n                  [class.activeHIghlight]=\"checkActive(pages[5])\" (click)=\"openPage(pages[5])\" class=\"buttonSIdeBAr\">\n            <ion-icon ios=\"ios-list-box-outline\" class=\"sidebarCss\" md=\"ios-list-box-outline\"></ion-icon>\n            Disciplines\n          </button>\n          <button menuClose ion-item no-lines [class.activeHIghlight]=\"checkActive(pages[3])\"\n                  (click)=\"openPage(pages[3])\" class=\"buttonSIdeBAr\">\n            <ion-icon ios=\"ios-notifications-outline\" class=\"sidebarCss\" md=\"ios-notifications-outline\"></ion-icon>\n            News Feed\n          </button>\n          \n          <button menuClose ion-item no-lines [class.activeHIghlight]=\"checkActive(pages[4])\"\n                  (click)=\"openPage(pages[4])\" class=\"buttonSIdeBAr\">\n            <ion-icon ios=\"ios-person-outline\" class=\"sidebarCss\" md=\"ios-person-outline\"></ion-icon>\n            Profile\n          </button>\n          <button menuClose ion-item no-lines [class.activeHIghlight]=\"checkActive(pages[9])\"\n           (click)=\"openPage(pages[9])\" class=\"buttonSIdeBAr\">\n           <ion-icon ios=\"ios-person-outline\" class=\"sidebarCss\" md=\"ios-person-outline\"></ion-icon>\n               Check\n            </button>\n                   \n          <button menuClose ion-item no-lines [class.activeHIghlight]=\"checkActive(pages[8])\"\n                  (click)=\"openPage(pages[8])\" class=\"buttonSIdeBAr\">\n            <ion-icon ios=\"ios-person-outline\" class=\"sidebarCss\" md=\"ios-person-outline\"></ion-icon>\n            About\n          </button>\n        \n          \n          <button menuClose no-lines style=\"border-bottom: 0.55px solid #383838; !important;\" ion-item\n                  [class.activeHIghlight]=\"checkActive(pages[0])\" (click)=\"openPage(pages[0])\" class=\"buttonSIdeBAr\">\n            <ion-icon class=\"sidebarCss\" ios=\"ios-log-out-outline\" md=\"ios-log-out-outline\"></ion-icon>\n            Logout\n          </button>\n         \n        </ion-list>\n      </ion-content>\n    </ion-menu>\n    <ion-nav #content [root]=\"rootPage\"></ion-nav>"
+            template: "<ion-menu [content]=\"content\">\n      <ion-header class=\"headerMAin\">\n        <ion-toolbar color=\"primary\">\n          <ion-buttons left>\n            <button class=\"createUser\" ion-button icon-only menuClose (click)=\"openPage(pages[4])\">\n              <ion-icon name=\"ios-create-outline\" md=\"ios-create-outline\" style=\"color:  #1ABC9C !important;\"></ion-icon>\n            </button>\n          </ion-buttons>\n        </ion-toolbar>\n      </ion-header>\n\n      <ion-content class=\"sideMenuIoncContent\">\n        \n        <ion-list class=\"headerMAin\">\n          <ion-item style=\"background: black !important;border-bottom: 0.55px solid #000000!important;\">\n            <ion-list class=\"logoImage\" menuClose (click)=\"openPage(pages[4])\">\n              <div class=\"circle-pic\" text-center #profilePic [style.background-image]=\"'url(https://via.placeholder.com/150)'\"></div>\n              <!--<img class=\"circle-pic\" src=\"https://via.placeholder.com/150\"/>-->\n            </ion-list>\n            <h3 class=\"userName\">Vicente Silva</h3>\n            <h3 class=\"userDetails\">Computer Science</h3>\n          </ion-item>\n        </ion-list>\n        \n        <ion-list>\n          \n          <button menuClose ion-item no-lines style=\"border-top: 0.55px solid #383838; !important;\"\n                  [class.activeHIghlight]=\"checkActive(pages[5])\" (click)=\"openPage(pages[5])\" class=\"buttonSIdeBAr\">\n            <ion-icon ios=\"ios-list-box-outline\" class=\"sidebarCss\" md=\"ios-list-box-outline\"></ion-icon>\n            Classes\n          </button>\n         \n          \n          <button menuClose ion-item no-lines [class.activeHIghlight]=\"checkActive(pages[4])\"\n                  (click)=\"openPage(pages[4])\" class=\"buttonSIdeBAr\">\n            <ion-icon ios=\"ios-person-outline\" class=\"sidebarCss\" md=\"ios-person-outline\"></ion-icon>\n            Profile\n          </button>\n          <button menuClose ion-item no-lines [class.activeHIghlight]=\"checkActive(pages[9])\"\n           (click)=\"openPage(pages[9])\" class=\"buttonSIdeBAr\">\n           <ion-icon ios=\"ios-person-outline\" class=\"sidebarCss\" md=\"ios-person-outline\"></ion-icon>\n               Check\n            </button>\n                   \n          <button menuClose ion-item no-lines [class.activeHIghlight]=\"checkActive(pages[8])\"\n                  (click)=\"openPage(pages[8])\" class=\"buttonSIdeBAr\">\n            <ion-icon ios=\"ios-person-outline\" class=\"sidebarCss\" md=\"ios-person-outline\"></ion-icon>\n            About\n          </button>\n        \n          \n          <button menuClose no-lines style=\"border-bottom: 0.55px solid #383838; !important;\" ion-item\n                  [class.activeHIghlight]=\"checkActive(pages[0])\" (click)=\"openPage(pages[0])\" class=\"buttonSIdeBAr\">\n            <ion-icon class=\"sidebarCss\" ios=\"ios-log-out-outline\" md=\"ios-log-out-outline\"></ion-icon>\n            Logout\n          </button>\n         \n        </ion-list>\n      </ion-content>\n    </ion-menu>\n    <ion-nav #content [root]=\"rootPage\"></ion-nav>"
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_3__ngx_translate_core__["c" /* TranslateService */], __WEBPACK_IMPORTED_MODULE_4_ionic_angular__["m" /* Platform */], __WEBPACK_IMPORTED_MODULE_6__providers__["c" /* Settings */],
             __WEBPACK_IMPORTED_MODULE_4_ionic_angular__["c" /* Config */], __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */], __WEBPACK_IMPORTED_MODULE_1__ionic_native_splash_screen__["a" /* SplashScreen */],
